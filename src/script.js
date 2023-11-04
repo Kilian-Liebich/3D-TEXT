@@ -24,7 +24,9 @@ const scene = new THREE.Scene();
  * Textures
  */
 const textureLoader = new THREE.TextureLoader();
-const matcapTexture = textureLoader.load("/textures/matcaps/4.png");
+const matcapTexture = textureLoader.load(
+  "https://raw.githubusercontent.com/Kilian-Liebich/3D-TEXT/main/static/textures/matcaps/4.png"
+);
 matcapTexture.colorSpace = THREE.SRGBColorSpace;
 
 /**
