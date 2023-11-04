@@ -24,9 +24,7 @@ const scene = new THREE.Scene();
  * Textures
  */
 const textureLoader = new THREE.TextureLoader();
-const matcapTexture = textureLoader.load(
-  "https://raw.githubusercontent.com/Kilian-Liebich/3D-TEXT/main/static/textures/matcaps/4.png"
-);
+const matcapTexture = textureLoader.load("/textures/matcaps/4.png");
 matcapTexture.colorSpace = THREE.SRGBColorSpace;
 
 /**
@@ -34,59 +32,56 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace;
  */
 const fontLoader = new FontLoader();
 
-fontLoader.load(
-  "https://raw.githubusercontent.com/Kilian-Liebich/3D-TEXT/main/static/fonts/helvetiker_regular.typeface.json",
-  (font) => {
-    const textGeometry = new TextGeometry("Kilian Liebich", {
-      font,
-      size: 0.5,
-      height: 0.2,
-      curveSegments: 6,
-      bevelEnabled: true,
-      bevelThickness: 0.03,
-      bevelSize: 0.02,
-      bevelOffset: 0,
-      bevelSegments: 4,
-    });
+fontLoader.load("/fonts/helvetiker_regular.typeface.json", (font) => {
+  const textGeometry = new TextGeometry("Kilian Liebich", {
+    font,
+    size: 0.5,
+    height: 0.2,
+    curveSegments: 6,
+    bevelEnabled: true,
+    bevelThickness: 0.03,
+    bevelSize: 0.02,
+    bevelOffset: 0,
+    bevelSegments: 4,
+  });
 
-    //   textGeometry.computeBoundingBox();
+  //   textGeometry.computeBoundingBox();
 
-    //   textGeometry.translate(
-    //     (textGeometry.boundingBox.max.x - 0.02) * -0.5,
-    //     (textGeometry.boundingBox.max.y - 0.02) * -0.5,
-    //     (textGeometry.boundingBox.max.z - 0.03) * -0.5
-    //   );
+  //   textGeometry.translate(
+  //     (textGeometry.boundingBox.max.x - 0.02) * -0.5,
+  //     (textGeometry.boundingBox.max.y - 0.02) * -0.5,
+  //     (textGeometry.boundingBox.max.z - 0.03) * -0.5
+  //   );
 
-    textGeometry.center();
+  textGeometry.center();
 
-    const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
-    //   textMaterial.wireframe = true;
-    const text = new THREE.Mesh(textGeometry, material);
-    scene.add(text);
+  const material = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
+  //   textMaterial.wireframe = true;
+  const text = new THREE.Mesh(textGeometry, material);
+  scene.add(text);
 
-    console.time("donuts");
-    const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45);
+  console.time("donuts");
+  const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45);
 
-    for (let i = 300; i > 0; i--) {
-      const donut = new THREE.Mesh(donutGeometry, material);
-      const scale = Math.random();
+  for (let i = 300; i > 0; i--) {
+    const donut = new THREE.Mesh(donutGeometry, material);
+    const scale = Math.random();
 
-      donut.position.x = (Math.random() - 0.5) * 10;
-      donut.position.y = (Math.random() - 0.5) * 10;
-      donut.position.z = (Math.random() - 0.5) * 10;
+    donut.position.x = (Math.random() - 0.5) * 10;
+    donut.position.y = (Math.random() - 0.5) * 10;
+    donut.position.z = (Math.random() - 0.5) * 10;
 
-      donut.rotation.x = Math.random() * Math.PI;
-      donut.rotation.y = Math.random() * Math.PI;
+    donut.rotation.x = Math.random() * Math.PI;
+    donut.rotation.y = Math.random() * Math.PI;
 
-      donut.scale.x = scale;
-      donut.scale.y = scale;
-      donut.scale.z = scale;
+    donut.scale.x = scale;
+    donut.scale.y = scale;
+    donut.scale.z = scale;
 
-      scene.add(donut);
-    }
-    console.timeEnd("donuts");
+    scene.add(donut);
   }
-);
+  console.timeEnd("donuts");
+});
 
 /**
  * Sizes
