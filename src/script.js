@@ -24,7 +24,7 @@ const scene = new THREE.Scene();
  * Textures
  */
 const textureLoader = new THREE.TextureLoader();
-const matcapTexture = textureLoader.load("/textures/matcaps/4.png");
+const matcapTexture = textureLoader.load("./textures/matcaps/4.png");
 matcapTexture.colorSpace = THREE.SRGBColorSpace;
 
 /**
@@ -32,7 +32,7 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace;
  */
 const fontLoader = new FontLoader();
 
-fontLoader.load("/fonts/helvetiker_regular.typeface.json", (font) => {
+fontLoader.load("./fonts/helvetiker_regular.typeface.json", (font) => {
   const textGeometry = new TextGeometry("Kilian Liebich", {
     font,
     size: 0.5,
